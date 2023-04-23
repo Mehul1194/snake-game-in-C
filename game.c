@@ -1,4 +1,4 @@
-//moving a snake across the screen
+//Snake game in c language
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -10,7 +10,8 @@ int dir=1;
 int score=0;
 void printbox();
 void init();
-void movingsnake();
+void movingsnake1();
+void movingsnake2();
 int checkwin();
 void fruit();
 int gamem();
@@ -31,9 +32,9 @@ int gamem()
     {
         printbox();
         entry();
+        movingsnake1();
         n=checkwin();
-        movingsnake();
-        
+        movingsnake2();
     }
     system("cls");
     printf("THE GAME HAS ENDED\n");
@@ -95,29 +96,45 @@ int checkwin()
     {
         return 0;
     }
-
 }
-void movingsnake()//moving the snake in the required direction according to direction
+//moving the snake in the required direction according to direction but not printing to check for score first
+void movingsnake1()
 {
     arr[posx][posy]=' ';
     if(dir==1)
     {
         posy+=1;
-        arr[posx][posy]='>';
     }
     else if(dir==2)
     {
         posx+=1;
-        arr[posx][posy]='v';
     }
     else if(dir==3)
     {
         posy-=1;
-        arr[posx][posy]='<';
     }
     else
     {
         posx-=1;
+    } 
+}
+void movingsnake2()//moving the snake in the required direction according to direction after checking for score
+{
+    arr[posx][posy]=' ';
+    if(dir==1)
+    {
+        arr[posx][posy]='>';
+    }
+    else if(dir==2)
+    {
+        arr[posx][posy]='v';
+    }
+    else if(dir==3)
+    {
+        arr[posx][posy]='<';
+    }
+    else
+    {
         arr[posx][posy]='^';
     } 
 }
